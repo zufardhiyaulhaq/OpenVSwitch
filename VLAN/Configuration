@@ -1,0 +1,83 @@
+Yellow 	: VLAN 10 
+Green 	: VLAN 20
+Purple 	: VLAN 30
+
+IP Address Alocation :
+PC8 : 12.12.12.8/24
+PC9 : 12.12.12.9/24
+PC10 : 12.12.12.10/24
+PC11 : 12.12.12.11/24
+PC12 : 12.12.12.12/24
+PC13 : 12.12.12.13/24
+PC14 : 12.12.12.14/24
+
+1. Set VLAN in OpenVSwitch
+
+OVS1 :
+
+/ # ovs-vsctl add-br br0
+/ # ovs-vsctl add-port br0 eth0 trunks=10,20,30
+/ # ovs-vsctl add-port br0 eth1 trunks=10,20,30
+/ # ovs-vsctl add-port br0 eth2 tag=20
+/ # ovs-vsctl add-port br0 eth3 tag=10
+
+OVS2 :
+
+/ # ovs-vsctl add-br br0
+/ # ovs-vsctl add-port br0 eth0 trunks=10,20,30
+/ # ovs-vsctl add-port br0 eth1 trunks=10,20,30
+/ # ovs-vsctl add-port br0 eth2 tag=30
+/ # ovs-vsctl add-port br0 eth3 tag=10
+
+OVS3 :
+
+/ # ovs-vsctl add-br br0
+/ # ovs-vsctl add-port br0 eth0 trunks=10,20,30
+/ # ovs-vsctl add-port br0 eth1 trunks=10,20,30
+/ # ovs-vsctl add-port br0 eth2 tag=20
+/ # ovs-vsctl add-port br0 eth3 tag=30
+/ # ovs-vsctl add-port br0 eth4 tag=10
+
+2. Set STP Enable on all OpenVSwitch
+
+/ # ovs-vsctl set bridge br0 stp_enable=true
+
+3. Configure the IP Address
+
+4. Test ping and do wireshark.
+
+PC8> ping 12.12.12.11
+
+84 bytes from 12.12.12.11 icmp_seq=1 ttl=64 time=2.692 ms
+84 bytes from 12.12.12.11 icmp_seq=2 ttl=64 time=1.294 ms
+84 bytes from 12.12.12.11 icmp_seq=3 ttl=64 time=0.804 ms
+84 bytes from 12.12.12.11 icmp_seq=4 ttl=64 time=1.431 ms
+84 bytes from 12.12.12.11 icmp_seq=5 ttl=64 time=0.902 ms
+
+Frame 5: 102 bytes on wire (816 bits), 102 bytes captured (816 bits) on interface 0
+Ethernet II, Src: Private_66:68:03 (00:50:79:66:68:03), Dst: Private_66:68:01 (00:50:79:66:68:01)
+802.1Q Virtual LAN, PRI: 0, CFI: 0, ID: 20
+    000. .... .... .... = Priority: Best Effort (default) (0)
+    ...0 .... .... .... = CFI: Canonical (0)
+    .... 0000 0001 0100 = ID: 20
+    Type: IPv4 (0x0800)
+Internet Protocol Version 4, Src: 12.12.12.11, Dst: 12.12.12.8
+    0100 .... = Version: 4
+    .... 0101 = Header Length: 20 bytes (5)
+    Differentiated Services Field: 0x00 (DSCP: CS0, ECN: Not-ECT)
+    Total Length: 84
+    Identification: 0x1286 (4742)
+    Flags: 0x00
+    Fragment offset: 0
+    Time to live: 64
+    Protocol: ICMP (1)
+    Header checksum: 0x37f9 [validation disabled]
+    [Header checksum status: Unverified]
+    Source: 12.12.12.11
+    Destination: 12.12.12.8
+    [Source GeoIP: AS32328 Alascom, Inc., Anchorage, AK, United States, 61.223099, -149.852798]
+    [Destination GeoIP: AS32328 Alascom, Inc., Anchorage, AK, United States, 61.223099, -149.852798]
+Internet Control Message Protocol
+
+
+
