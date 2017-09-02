@@ -24,6 +24,36 @@ e0/0.30 : 12.12.30.1/24
 1. Configure the VLAN
 See other folder in this repository : https://github.com/zufardhiyaulhaq/OpenVSwitch/tree/master/VLAN
 
+2. Configure trunk link in eth5
 
+ovs-vsctl add-port br0 eth1 trunks=10,20,30
 
+3. Configure IP Address in Router
 
+R1(config)#int e0/0
+R1(config-if)#no sh
+R1(config-if)#exit
+R1(config)#int e0/0.10
+R1(config-subif)#encapsulation dot1Q 10
+R1(config-subif)#ip add 12.12.10.1 255.255.255.0
+R1(config-subif)#exit
+R1(config)#int e0/0.20
+R1(config-subif)#encapsulation dot1Q 20
+R1(config-subif)#ip add 12.12.20.1 255.255.255.0
+R1(config-subif)#exit
+R1(config)#int e0/0.30
+R1(config-subif)#encapsulation dot1Q 30
+R1(config-subif)#ip add 12.12.30.1 255.255.255.0
+R1(config-subif)#exit
+
+4. Test Ping
+
+PC14> trace 12.12.20.11
+trace to 12.12.20.11, 8 hops max, press Ctrl+C to stop
+ 1   12.12.10.1   1.100 ms  1.453 ms  0.959 ms
+ 2   *12.12.20.11   1.679 ms
+
+PC14> trace 12.12.30.9     
+trace to 12.12.30.9, 8 hops max, press Ctrl+C to stop
+ 1   12.12.10.1   1.877 ms  0.985 ms  0.876 ms
+ 2   *12.12.30.9   2.978 ms
