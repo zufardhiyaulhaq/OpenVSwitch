@@ -1,0 +1,29 @@
+We use our old configuration in VLAN chapter.
+but now we use difference Network each VLAN.
+
+Yellow 	: VLAN 10 
+Green 	: VLAN 20
+Purple 	: VLAN 30
+
+IP Address Alocation :
+PC8 : 12.12.20.8/24
+PC9 : 12.12.30.9/24
+PC10 : 12.12.10.10/24
+PC11 : 12.12.20.11/24
+PC12 : 12.12.10.12/24
+PC13 : 12.12.30.13/24
+PC14 : 12.12.10.14/24
+
+dont forget to configure the default gateway to the router ip address.
+
+R1 :
+e0/0.10 : 12.12.10.1/24
+e0/0.20 : 12.12.20.1/24
+e0/0.30 : 12.12.30.1/24
+
+1. Configure the VLAN
+See other folder in this repository : https://github.com/zufardhiyaulhaq/OpenVSwitch/tree/master/VLAN
+
+
+
+
