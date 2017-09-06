@@ -17,3 +17,9 @@ Proses Instalasi :
 $ sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils
 $ sudo apt-get install openvswitch-switch 
 ```
+
+- Cek Istalasi OpenVSwitch
+
+```
+ovs-vsctl --version
+```
