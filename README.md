@@ -23,3 +23,15 @@ $ sudo apt-get install openvswitch-switch
 ```
 ovs-vsctl --version
 ```
+
+Menghubungkan OpenVSwitch ke OpenDayLight
+=========================================
+
+OpenDayLight adalah sebuah controller SDN yang bersifat Open Source. Kamu dapat membaca lebih dalam tenang controller ini di repositori [OpenDayLight](https://github.com/zufardhiyaulhaq/OpenDayLight).
+
+OpenDayLight dan OpenVSwitch yang akan digunakan adalah berbasis docker yang diimplementasikan didalam GNS3. Untuk melihat instalasinya, silahkan lihat repositori [OpenDayLight](https://github.com/zufardhiyaulhaq/OpenDayLight).
+
+## Topologi
+
+
+
