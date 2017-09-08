@@ -32,6 +32,41 @@ OpenDayLight adalah sebuah controller SDN yang bersifat Open Source. Kamu dapat 
 OpenDayLight dan OpenVSwitch yang akan digunakan adalah berbasis docker yang diimplementasikan didalam GNS3. Untuk melihat instalasinya, silahkan lihat repositori [OpenDayLight](https://github.com/zufardhiyaulhaq/OpenDayLight).
 
 ## Topologi
+![alt text](https://github.com/zufardhiyaulhaq/OpenVSwitch/blob/master/Images/Topology.png)
 
+## Konfigurasi OpenVSWitch
 
+- Buat sebuah Bridge
 
+```
+$ ovs-vsctl add-br br0
+```
+
+- Masukan interface kedalam Bridge
+
+```
+$ ovs-vsctl add-port br0 eth0
+$ ovs-vsctl add-port br0 eth1
+$ ovs-vsctl add-port br0 eth2
+$ ovs-vsctl add-port br0 eth3
+```
+
+- Set Controller ke OpenDayLight
+
+```
+$ ovs-vsctl set-controller br0 "tcp:192.168.122.254:6633"
+```
+
+## Verifikasi
+
+Lihat apakah OpenVSwitch terkoneksi dengan Controller
+```
+$ ovs-vsctl list controller
+```
+
+## Troubleshooting
+- Jika OpenVSwitch dan OpenDayLight sudah terkoneksi tetapi tidak dapat terhubung ke controller, nyalakan interface bridge pada OpenVSwitch
+
+```
+$ ifconfig br0 up
+```
