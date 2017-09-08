@@ -3,6 +3,7 @@ OpenVSwitch
 OpenVSwitch adalah sebuah switch virtual berbasis linux. OpenVSwitch sendiri merupakan perangkat lunak sumber terbuka yang berada dalam lisensi Apache 2.0. OpenVSwitch mendukung pengontrolan secara automatis dengan protokol openflow.
 
 ![alt text](https://github.com/zufardhiyaulhaq/OpenVSwitch/blob/master/Images/featured-image.jpg)
+
 Instalasi OpenVSwitch
 =====================
 
@@ -56,11 +57,41 @@ $ ovs-vsctl add-port br0 eth3
 $ ovs-vsctl set-controller br0 "tcp:192.168.122.254:6633"
 ```
 
+## Konfigurasi OpenDayLight
+
+- Jalankan OpenDayLight dengan Karaf
+
+```
+$ ./bin/karaf
+```
+
+- Install OpenDayLight DLUX dan L2Switch feature
+
+```
+feature:install odl-dlux-all odl-l2switch-all
+```
+
 ## Verifikasi
 
 Lihat apakah OpenVSwitch terkoneksi dengan Controller
 ```
 $ ovs-vsctl list controller
+_uuid               : dd619d79-33f8-4efb-89c6-bda14799b40e
+connection_mode     : []
+controller_burst_limit: []
+controller_rate_limit: []
+enable_async_messages: []
+external_ids        : {}
+inactivity_probe    : []
+is_connected        : true
+local_gateway       : []
+local_ip            : []
+local_netmask       : []
+max_backoff         : []
+other_config        : {}
+role                : master
+status              : {last_error="Connection refused", sec_since_connect="11", sec_since_disconnect="19", state=ACTIVE}
+target              : "tcp:192.168.122.254:6633"
 ```
 
 ## Troubleshooting
