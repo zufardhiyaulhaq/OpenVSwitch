@@ -7,7 +7,7 @@ OpenVSwitch adalah sebuah switch virtual berbasis linux. OpenVSwitch sendiri mer
 Instalasi OpenVSwitch
 =====================
 
-Pada Tutorial ini, akan digunakan Ubuntu sebagai operating systemnya. Kamu dapat melakukan build from source melalui dokumentasi resmi [OpenVSwitch](http://docs.openvswitch.org/en/latest/intro/install/)
+Pada Tutorial ini, akan digunakan Ubuntu sebagai operating systemnya. Kamu dapat melakukan `build from source` melalui dokumentasi resmi [OpenVSwitch](http://docs.openvswitch.org/en/latest/intro/install/)
 
 Proses Instalasi :
 - Install Ubuntu
@@ -18,7 +18,7 @@ $ sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils
 $ sudo apt-get install openvswitch-switch 
 ```
 
-- Cek Istalasi OpenVSwitch
+- Cek Instalasi OpenVSwitch
 
 ```
 ovs-vsctl --version
